@@ -5,6 +5,7 @@ FlappyToast/
 flappy-toast/
 exo/
 SFML-2.6.0/
+TD/
 
 # Ignore specific file extensions
 *.zip
