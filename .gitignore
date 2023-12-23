@@ -1,0 +1,75 @@
+# Ignore specific directories
+TD3/
+TD2/
+FlappyToast/
+flappy-toast/
+exo/
+SFML-2.6.0/
+
+# Ignore specific file extensions
+*.zip
+*.rar
+*.exe
+
+# C++ and Visual Studio Code related ignores
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executable files
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Visual Studio Code folders
+.vscode/
+
+# Build folders
+build/
+bin/
+obj/
+
+# Dependency directories
+node_modules/
+
+# Backup & Log files
+*.log
+*.bak
+*.tmp
+*.swp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
