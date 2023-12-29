@@ -12,7 +12,7 @@ int main(){
     player1.addCardToBench(new EnergyCard("Electric"));
     player1.addCardToBench(new TrainerCard("Ash","heal all your action pokemon"));
     player1.addCardToBench(new PokemonCard("Pikachu","Electric","Pikachu",2,100,2,"thunder bolt",20,3,"thunder storm",30));
-    player1.activatePokemonCard(3); //Working
+    player1.activatePokemonCard(3);
     player1.attachEnergyCard(0,0);
     player1.attachEnergyCard(0,0);
     cout << endl;

@@ -24,8 +24,6 @@ void Player::attachEnergyCard(int energyCardIndex, int pokemonCardIndex) {
             }
         }
     }
-    //TODO: Energy card must be deleted from the bench but it is not the case
-    //TODO: Verify if the energy card is the same type as the pokemon type
 }
 
 void Player::activatePokemonCard(int cardIndex) {
@@ -37,12 +35,12 @@ void Player::activatePokemonCard(int cardIndex) {
     }
 }
 
-
 void Player::addCardToBench(Card* card) {
     bench.push_back(card);
 }
 
 void Player::displayAction() {
+    cout << "Action cards for Player " << name << ":" << endl;
     for (auto& card : action) {
         card->displayInfo();
     }
@@ -63,8 +61,7 @@ void Player::attack(int attackerIndex, int attackIndex, Player& target, int targ
         if (attacker != nullptr && targetIndex < target.action.size()) {
             PokemonCard* targetPokemon = dynamic_cast<PokemonCard*>(target.action[targetIndex]);
             if (targetPokemon != nullptr) {
-                attacker->performAttack(attackIndex, *targetPokemon);
-            }
+                attacker->performAttack(attackIndex, *targetPokemon);            }
         } //TODO: Deux attaques maximum
     }
 }
@@ -76,4 +73,15 @@ void Player::useTrainer(int trainerIndex) {
         cout << name << " is using the Trainer Card to \"" << trainerCard->getEffect() << "\"" << endl;
     }
 }//TODO: Add max HP to every pokemons
+
+void Player::removeDefeatedPokemon(int index) {
+    if (index < bench.size()) {
+        PokemonCard* pokemonCard = dynamic_cast<PokemonCard*>(bench[index]);
+        if (pokemonCard != nullptr && pokemonCard->getCurrentHP() <= 0) {
+            delete bench[index]; 
+            bench.erase(bench.begin() + index);  
+        }
+    }
+}
+
 

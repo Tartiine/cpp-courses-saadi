@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <tuple> 
+#include "player.h"
 using namespace std;
 
 class PokemonCard : public Card {
@@ -17,8 +18,11 @@ public:
 
     void attacks(const vector<tuple<int, int, string, int>>& attackDetails);
     void addEnergy(const string &energyType);
-    void performAttack(int attackIndex, PokemonCard& targetPokemon);
     void displayInfo() const override;
+    void performAttack(int attackIndex, PokemonCard &targetPokemon);
+    int getCurrentHP() const {
+        return currentHP;
+    }
 
 private:
     string cardName;
@@ -31,4 +35,4 @@ private:
     vector<tuple<int, int, string, int>> attackDetails; 
 };
 
-#endif // POKEMON_CARD_H
+#endif 

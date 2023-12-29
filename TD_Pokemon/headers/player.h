@@ -15,6 +15,8 @@ class Player{
         void displayAction();
         void attack(int, int, Player&, int);
         void useTrainer(int);
+        void removeDefeatedPokemon(int index);
+
     private:
         string name;
         vector<Card*> bench;

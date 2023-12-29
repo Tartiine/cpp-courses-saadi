@@ -25,9 +25,9 @@ void PokemonCard::attacks(const vector<tuple<int, int, string, int>> &newAttackD
 }
 
 void PokemonCard::addEnergy(const string& energyType) {
-    for (auto& attack : attackDetails) {
-        if (get<2>(attack) == energyType) {
-            get<1>(attack)++;  
+    if (pokemonType == energyType) {
+        for (auto& attack : attackDetails) {
+            get<1>(attack)++; 
         }
     }
 }
@@ -58,15 +58,12 @@ void PokemonCard::displayInfo() const {
 void PokemonCard::performAttack(int attackIndex, PokemonCard& targetPokemon) {
     if (attackIndex < attackDetails.size()) {
         auto& attack = attackDetails[attackIndex];
-        if (get<1>(attack) >= get<0>(attack)) {
-            targetPokemon.currentHP -= get<3>(attack);
-            get<1>(attack) = 0;
-            if(targetPokemon.currentHP <= 0){
-                delete bench[targetPokemonIndex];  //Get index of target
-                bench.erase(bench.begin() + targetPokemonIndex); 
-            }
+        if (get<1>(attack) >= get<0>(attack)) { 
+            targetPokemon.currentHP -= get<3>(attack); 
+            get<1>(attack) = 0; 
         }
     }
 }
+
 
 
