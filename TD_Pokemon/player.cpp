@@ -54,25 +54,52 @@ void Player::displayBench() {
 }
 
 
-
 void Player::attack(int attackerIndex, int attackIndex, Player& target, int targetIndex) {
     if (attackerIndex < action.size()) {
         PokemonCard* attacker = dynamic_cast<PokemonCard*>(action[attackerIndex]);
-        if (attacker != nullptr && targetIndex < target.action.size()) {
+        if (attacker != nullptr && attacker->getNumberOfAttacks() <= 2 && targetIndex < target.action.size()) {
             PokemonCard* targetPokemon = dynamic_cast<PokemonCard*>(target.action[targetIndex]);
             if (targetPokemon != nullptr) {
-                attacker->performAttack(attackIndex, *targetPokemon);            }
-        } //TODO: Deux attaques maximum
+                const auto& attackDetails = attacker->getAttackDetails();
+                if (attackIndex < attackDetails.size()) {
+                    const auto& attack = attackDetails[attackIndex];
+                    string attackDescription = get<2>(attack);
+                    int attackDamage = get<3>(attack);
+
+                    attacker->performAttack(attackIndex, *targetPokemon);
+
+                    cout << name << " attacking " << target.name << "'s Pokemon " 
+                         << targetPokemon->getName() << " with the Pokemon " 
+                         << attacker->getName() << " using attack: " << attackDescription << endl;
+                    cout << "Reducing " << attackDamage << " from " << target.name << "'s Pokemon's HP" << endl;
+                    
+                    if (targetPokemon->getCurrentHP() > 0) {
+                        cout << "Pokemon " << targetPokemon->getName() << " is still alive" << endl;
+                    } else {
+                        cout << "Pokemon " << targetPokemon->getName() << " is defeated" << endl;
+                    }
+                }
+            }
+        }
     }
 }
+
 
 
 void Player::useTrainer(int trainerIndex) {
     TrainerCard* trainerCard = dynamic_cast<TrainerCard*>(bench[trainerIndex]);
     if (trainerCard != nullptr) {
         cout << name << " is using the Trainer Card to \"" << trainerCard->getEffect() << "\"" << endl;
+
+        for (auto& card : action) {
+            PokemonCard* pokemonCard = dynamic_cast<PokemonCard*>(card);
+            if (pokemonCard != nullptr) {
+                pokemonCard->restoreToMaxHP();
+            }
+        }
     }
-}//TODO: Add max HP to every pokemons
+}
+
 
 void Player::removeDefeatedPokemon(int index) {
     if (index < bench.size()) {

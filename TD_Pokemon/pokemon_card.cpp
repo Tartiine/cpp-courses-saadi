@@ -66,4 +66,6 @@ void PokemonCard::performAttack(int attackIndex, PokemonCard& targetPokemon) {
 }
 
 
-
+void PokemonCard::restoreToMaxHP() {
+    currentHP = maxHP;
+}

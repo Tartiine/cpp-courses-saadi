@@ -20,8 +20,15 @@ public:
     void addEnergy(const string &energyType);
     void displayInfo() const override;
     void performAttack(int attackIndex, PokemonCard &targetPokemon);
-    int getCurrentHP() const {
+    void restoreToMaxHP();
+    int getCurrentHP() const{
         return currentHP;
+    }
+    const vector<tuple<int, int, string, int>>& getAttackDetails() const{
+        return attackDetails;
+    }
+    int getNumberOfAttacks() const{
+        return attackDetails.size();
     }
 
 private:
