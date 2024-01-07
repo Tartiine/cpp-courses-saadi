@@ -3,13 +3,15 @@
 
 #include <vector>
 
+using namespace std;
+
 class TimeSeriesGenerator {
     public:
         TimeSeriesGenerator();
         TimeSeriesGenerator(int);
-        std::vector<double> generateTimeSeries(int);
-        void printTimeSeries(const std::vector<double>&);
-
+        virtual vector<double> generateTimeSeries(int);
+        void printTimeSeries(const vector<double>&);
+        int getSeed() const { return seed; }
     private:
         int seed;
 };
